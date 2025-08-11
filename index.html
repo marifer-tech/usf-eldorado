@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Avaliação Inicial - Grupo de Cessação do Tabagismo</title>
+    <style>
+        :root {
+            --primary: #008c64;
+            --secondary: #6c757d;
+            --success: #00d97e;
+            --danger: #e63757;
+            --light: #f9fafd;
+            --dark: #12263f;
+            --border-radius: 0.375rem;
+            --box-shadow: 0 0.5rem 1.5rem rgba(22, 28, 45, 0.1);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #008c64;
+            color: var(--dark);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #e1e5eb;
+        }
+
+        h1 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .subtitle {
+            color: var(--secondary);
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+        }
+
+        .info-box {
+            background-color: #f8f9fa;
+            border-left: 4px solid var(--primary);
+            padding: 1rem;
+            margin-bottom: 2rem;
+            border-radius: 0 var(--border-radius) var(--border-radius) 0;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .required::after {
+            content: " *";
+            color: var(--danger);
+        }
+
+        input[type="text"],
+        input[type="tel"],
+        input[type="number"],
+        select {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #ced4da;
+            border-radius: var(--border-radius);
+            font-size: 1rem;
+            transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+        }
+
+        input:focus,
+        select:focus {
+            outline: 0;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 0.2rem rgba(44, 123, 229, 0.25);
+        }
+
+        .radio-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .radio-option {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .radio-option input {
+            margin-right: 0.75rem;
+        }
+
+        button {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            font-size: 1rem;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            transition: background-color 0.15s ease-in-out;
+        }
+
+        button:hover {
+            background-color: #1a68d1;
+        }
+
+        .result-container {
+            margin-top: 2rem;
+            padding: 1.5rem;
+            border-radius: var(--border-radius);
+            background-color: #f8f9fa;
+            display: none;
+        }
+
+        .result-title {
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .result-score {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .result-level {
+            font-size: 1.25rem;
+            font-weight: 600;
+            padding: 0.5rem;
+            border-radius: var(--border-radius);
+            text-align: center;
+        }
+
+        .low {
+            background-color: #d1fae5;
+            color: #065f46;
+        }
+
+        .medium {
+            background-color: #fef3c7;
+            color: #92400e;
+        }
+
+        .high {
+            background-color: #fee2e2;
+            color: #991b1b;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 2rem;
+            color: var(--secondary);
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                margin: 1rem;
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Avaliação inicial individual</h1>
+            <p class="subtitle">Grupo de Cessação do Tabagismo - USF Eldorado</p>
+        </header>
+
+        <div class="info-box">
+            <p>As reuniões do grupo acontecerão todas as sextas-feiras às 18h00, com início previsto para 15/08/2025.</p>
+            <p>Responder esse formulário com honestidade nos permitirá avaliar seu grau de dependência à nicotina, para melhor entendermos como iremos conduzir o seu caso.</p>
+            <p><strong>Ressaltamos que as informações deste formulário ficarão disponíveis apenas para a equipe que trabalhará no grupo.</strong></p>
+        </div>
+
+        <form id="assessmentForm">
+            <h2>Dados Pessoais</h2>
+            
+            <div class="form-group">
+                <label for="nome" class="required">Nome completo</label>
+                <input type="text" id="nome" name="nome" required>
+            </div>
+
+            <div class="form-group">
+                <label for="cpf" class="required">CPF</label>
+                <input type="text" id="cpf" name="cpf" required placeholder="000.000.000-00">
+            </div>
+
+            <div class="form-group">
+                <label for="telefone" class="required">Telefone para contato</label>
+                <input type="tel" id="telefone" name="telefone" required placeholder="(00) 00000-0000">
+            </div>
+
+            <h2>Avaliação de Dependência à Nicotina</h2>
+
+            <div class="form-group">
+                <label for="q1" class="required">1. Quanto tempo após acordar você fuma o primeiro cigarro?</label>
+                <select id="q1" name="q1" required>
+                    <option value="" selected disabled>Selecione uma opção</option>
+                    <option value="3">Dentro de 5 minutos</option>
+                    <option value="2">De 6 a 30 minutos</option>
+                    <option value="1">De 31 a 60 minutos</option>
+                    <option value="0">Após 60 minutos</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label class="required">2. Você acha difícil não fumar em locais proibidos (ex: igreja, ônibus)?</label>
+                <div class="radio-group">
+                    <label class="radio-option">
+                        <input type="radio" name="q2" value="1" required> Sim
+                    </label>
+                    <label class="radio-option">
+                        <input type="radio" name="q2" value="0"> Não
+                    </label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="required">3. Qual cigarro do dia seria o mais difícil de eliminar?</label>
+                <div class="radio-group">
+                    <label class="radio-option">
+                        <input type="radio" name="q3" value="1" required> O primeiro da manhã
+                    </label>
+                    <label class="radio-option">
+                        <input type="radio" name="q3" value="0"> Qualquer outro
+                    </label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="q4" class="required">4. Quantos cigarros você fuma por dia?</label>
+                <select id="q4" name="q4" required>
+                    <option value="" selected disabled>Selecione uma opção</option>
+                    <option value="0">10 ou menos</option>
+                    <option value="1">11 a 20</option>
+                    <option value="2">21 a 30</option>
+                    <option value="3">31 ou mais</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label class="required">5. Você fuma com mais frequência nas primeiras horas após acordar do que no restante do dia?</label>
+                <div class="radio-group">
+                    <label class="radio-option">
+                        <input type="radio" name="q5" value="1" required> Sim
+                    </label>
+                    <label class="radio-option">
+                        <input type="radio" name="q5" value="0"> Não
+                    </label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="q6">6. Você faz algum tratamento de saúde? (Deixe em branco se não)</label>
+                <input type="text" id="q6" name="q6">
+            </div>
+
+            <button type="button" id="calculateBtn">Calcular Pontuação</button>
+        </form>
+
+        <div class="result-container" id="resultContainer">
+            <h3 class="result-title">Resultado da Avaliação</h3>
+            <div class="result-score" id="resultScore"></div>
+            <div class="result-level" id="resultLevel"></div>
+        </div>
+
+        <footer>
+            <p>USF Eldorado - Secretaria Municipal de Saúde</p>
+            <p>sms.usfeldorado@gmail.com</p>
+        </footer>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Máscaras para CPF e Telefone
+            const cpfInput = document.getElementById('cpf');
+            const telefoneInput = document.getElementById('telefone');
+
+            cpfInput.addEventListener('input', function(e) {
+                let value = e.target.value.replace(/\D/g, '');
+                if (value.length > 3) value = value.substring(0, 3) + '.' + value.substring(3);
+                if (value.length > 7) value = value.substring(0, 7) + '.' + value.substring(7);
+                if (value.length > 11) value = value.substring(0, 11) + '-' + value.substring(11);
+                e.target.value = value.substring(0, 14);
+            });
+
+            telefoneInput.addEventListener('input', function(e) {
+                let value = e.target.value.replace(/\D/g, '');
+                if (value.length > 0) value = '(' + value;
+                if (value.length > 3) value = value.substring(0, 3) + ') ' + value.substring(3);
+                if (value.length > 10) value = value.substring(0, 10) + '-' + value.substring(10);
+                e.target.value = value.substring(0, 15);
+            });
+
+            // Cálculo da pontuação
+            document.getElementById('calculateBtn').addEventListener('click', function() {
+                // Validar formulário
+                const form = document.getElementById('assessmentForm');
+                if (!form.checkValidity()) {
+                    form.reportValidity();
+                    return;
+                }
+
+                // Calcular pontuação
+                const q1 = parseInt(document.getElementById('q1').value);
+                const q2 = parseInt(document.querySelector('input[name="q2"]:checked').value);
+                const q3 = parseInt(document.querySelector('input[name="q3"]:checked').value);
+                const q4 = parseInt(document.getElementById('q4').value);
+                const q5 = parseInt(document.querySelector('input[name="q5"]:checked').value);
+                const q6 = document.getElementById('q6').value.trim() !== '' ? 1 : 0;
+
+                const total = q1 + q2 + q3 + q4 + q5 + q6;
+
+                // Determinar nível de dependência
+                let nivel, classe;
+                if (total <= 2) {
+                    nivel = "Muito Baixa";
+                    classe = "low";
+                } else if (total <= 4) {
+                    nivel = "Baixa";
+                    classe = "low";
+                } else if (total == 5) {
+                    nivel = "Média";
+                    classe = "medium";
+                } else if (total <= 7) {
+                    nivel = "Elevada";
+                    classe = "high";
+                } else {
+                    nivel = "Muito Elevada";
+                    classe = "high";
+                }
+
+                // Exibir resultados
+                document.getElementById('resultScore').textContent = `🔢 Pontuação Total: ${total}`;
+                const resultLevel = document.getElementById('resultLevel');
+                resultLevel.textContent = `📊 Nível de Dependência à Nicotina: ${nivel}`;
+                resultLevel.className = `result-level ${classe}`;
+
+                // Mostrar container de resultados
+                document.getElementById('resultContainer').style.display = 'block';
+
+                // Rolagem suave para os resultados
+                document.getElementById('resultContainer').scrollIntoView({ behavior: 'smooth' });
+            });
+        });
+    </script>
+</body>
+</html>
